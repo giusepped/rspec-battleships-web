@@ -10,7 +10,13 @@ feature 'Starting a new game' do
   scenario 'I am greeted with my name' do
     visit '/new-game'
     fill_in 'name', with: 'fadi'
-    click_button 'Submit'
+    click_button 'submit'
     expect(page).to have_content 'Player 1 is fadi.'
+  end
+
+  scenario 'user does not input name' do
+    visit '/new-game'
+    click_button 'submit'
+    expect(page).to have_content "What's your name?"
   end
 end

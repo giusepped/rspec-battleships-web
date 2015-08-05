@@ -15,11 +15,15 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/start-game' do
-    @player_1 = Player.new
-    @player_1.name = params[:name]
-    @player_2 = Player.new
-    @player_2.name = 'COMPUTER'
-    erb :startgame
+    if params[:name].empty?
+      redirect '/new-game'
+    else
+      @player_1 = Player.new
+      @player_1.name = params[:name]
+      @player_2 = Player.new
+      @player_2.name = 'COMPUTER'
+      erb :startgame
+    end
   end
 
   # start the server if ruby file executed directly

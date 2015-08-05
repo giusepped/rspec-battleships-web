@@ -1,3 +1,4 @@
+require 'battleships'
 require 'sinatra/base'
 
 class BattleshipsWeb < Sinatra::Base
@@ -9,7 +10,16 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/new-game' do
-    "What's your name?"
+    erb :newgame
+  end
+
+  get '/start-game' do
+    @visitor = params[:name]
+    @player1 = Player.new
+    @player1.name = params[:name]
+    @player2 = Player.new
+    @player2.name = 'COMPUTER'
+    erb :startgame
   end
 
   # start the server if ruby file executed directly

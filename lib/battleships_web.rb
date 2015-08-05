@@ -2,7 +2,7 @@ require 'battleships'
 require 'sinatra/base'
 
 class BattleshipsWeb < Sinatra::Base
-  enable :sessions
+  enable :session
 
   set :views, proc { File.join(root, '..', 'views') }
 
@@ -11,13 +11,14 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/new-game' do
-    @name = params[:name]
     erb :newgame
   end
 
   get '/start-game' do
-    @visitor = params[:name]
-    session["name"] = params[:name]
+    @player_1 = Player.new
+    @player_1.name = params[:name]
+    @player_2 = Player.new
+    @player_2.name = 'COMPUTER'
     erb :startgame
   end
 

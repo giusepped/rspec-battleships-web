@@ -1,8 +1,4 @@
 <div>
-  <% if @visitor == ''%>
-    Enter a name!
-  <% else %>
-    Player 1 is <% @visitor %>.
-    Player 2 is <% @player2.name %>.
-  <% end %>
+  Player 1 is <%= @player_1.name %>.
+  Player 2 is <%= @player_2.name %>.
 </div>
